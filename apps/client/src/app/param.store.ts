@@ -38,6 +38,8 @@ export class ParamStore extends ComponentStore<ParamState> {
   /*
    * This is the first way we can configure an `effect` to always be listening to an observable without needing to call
    * the `effect` like a method like we see in the example here: https://ngrx.io/guide/component-store/effect
+   *
+   * This subscription will also be automatically cleaned up when the ComponentStore is destroyed.
    */
   readonly intervalParamUpdate$ = this.effect(() =>
     this.interval$.pipe(
@@ -79,6 +81,8 @@ export class ParamStore extends ComponentStore<ParamState> {
      * ComponentStore effects can be called with either a value (which is then wrapped in an observable) or an observable
      * which is just passed into the effect. When you call an effect with a hot observable the effect will keep being
      * called for every emission of the `timeParam`.
+     *
+     * This subscription will also be automatically cleaned up when the ComponentStore is destroyed.
      */
     this.updateStateFromParam$(this.timeParam$);
   }
