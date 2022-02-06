@@ -1,0 +1,3 @@
+<div *ngIf="time$ | async as time">
+  Last time the param was update was: {{ time | date: 'long' }}
+</div>
